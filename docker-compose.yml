@@ -5,8 +5,8 @@ services:
     image: docker:dind
     privileged: true
     ports:
-      - "8080:8080"
-      - "50000:50000"
+      #- "8080:8080"
+      #- "50000:50000"
     networks:
       jenkins:
         aliases:
@@ -18,12 +18,12 @@ services:
       - jenkins-data:/var/jenkins_home
       - $HOME:/home
       #- /var/run/docker.sock:/var/run/docker.sock
-    ports:
-      - 3000:3000
+    #ports:
+    #  - 3000:3000
   jenkins-tutorial:
     image: jenkinsci/blueocean
-    #ports:
-    #  - "3000:3000"
+    ports:
+      - "8080:8080"
     networks:
       - jenkins
     environment:
