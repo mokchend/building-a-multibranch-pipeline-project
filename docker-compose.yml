@@ -4,7 +4,7 @@ services:
   jenkins-docker:
     image: docker:dind
     privileged: true
-    ports:
+    #ports:
       #- "8080:8080"
       #- "50000:50000"
     networks:
