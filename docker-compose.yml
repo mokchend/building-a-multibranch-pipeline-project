@@ -17,10 +17,11 @@ services:
       - jenkins-docker-certs:/certs/client
       - jenkins-data:/var/jenkins_home
       - $HOME:/home
-      #- /var/run/docker.sock:/var/run/docker.sock
+      #- /var/run/docker.sock:/var/run/docker.sock # not required with DinD
     # When starting docker instance which host application for development, production & master branches
     ports:
-      - 3000:3000
+      - "3000:3000"
+      - "5000:5000" # not used as startup script failed
   jenkins-tutorial:
     image: jenkinsci/blueocean
     ports:
