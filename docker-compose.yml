@@ -1,6 +1,6 @@
 version: "3"
 services:
-  # http://localhost:8080/login admin/Fra-27-
+  # http://localhost:8080/login mokchend/Fra-27-
   jenkins-docker:
     image: docker:dind
     privileged: true
