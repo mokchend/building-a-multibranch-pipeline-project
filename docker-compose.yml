@@ -36,7 +36,7 @@ services:
         - jenkins-docker-certs:/certs/client:ro
         - $HOME:/home
     ports:
-        - 8080:8080
+        - "8080:8080"
 #    depends_on: 
 #      - postgres
 networks:
