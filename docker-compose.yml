@@ -18,8 +18,9 @@ services:
       - jenkins-data:/var/jenkins_home
       - $HOME:/home
       #- /var/run/docker.sock:/var/run/docker.sock
-    #ports:
-    #  - 3000:3000
+    # When starting docker instance which host application for development, production & master branches
+    ports:
+      - 3000:3000
   jenkins-tutorial:
     image: jenkinsci/blueocean
     ports:
