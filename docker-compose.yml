@@ -1,0 +1,44 @@
+version: "3"
+services:
+  # http://localhost:8080/login mokchend/Fra-27-
+  jenkins-docker:
+    image: docker:dind
+    privileged: true
+    #ports:
+      #- "8080:8080"
+      #- "50000:50000"
+    networks:
+      jenkins:
+        aliases:
+            - docker
+    environment:
+        DOCKER_TLS_CERTDIR: /certs
+    volumes:
+      - jenkins-docker-certs:/certs/client
+      - jenkins-data:/var/jenkins_home
+      - $HOME:/home
+      #- /var/run/docker.sock:/var/run/docker.sock
+    #ports:
+    #  - 3000:3000
+  jenkins-tutorial:
+    image: jenkinsci/blueocean
+    ports:
+      - "8080:8080"
+    networks:
+      - jenkins
+    environment:
+        DOCKER_HOST: tcp://docker:2376
+        DOCKER_CERT_PATH: /certs/client
+        DOCKER_TLS_VERIFY: 1
+    volumes:
+        # Configure bind propagation : https://docs.docker.com/storage/bind-mounts/
+        - jenkins-data:/var/jenkins_home
+        - jenkins-docker-certs:/certs/client:ro
+        - $HOME:/home
+#    depends_on: 
+#      - postgres
+networks:
+    jenkins:
+volumes:
+  jenkins-docker-certs: # named volumes can be managed easier using docker-compose 
+  jenkins-data: 
