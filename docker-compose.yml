@@ -1,4 +1,4 @@
-version: "3"
+version: "3.5"
 services:
   # http://localhost:8080/login mokchend/Fra-27-
   jenkins-docker:
@@ -41,6 +41,12 @@ services:
 #      - postgres
 networks:
     jenkins:
+      driver: bridge 
+      name: global-poc-jenkins
 volumes:
   jenkins-docker-certs: # named volumes can be managed easier using docker-compose 
-  jenkins-data: 
+    driver: local
+    name: global-poc-jenkins
+  jenkins-data:
+    driver: local 
+    name:  global-poc-jenkins-data
